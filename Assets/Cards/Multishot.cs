@@ -2,8 +2,8 @@ public class Multishot : PerkCard
 {
     public override void OnSelect()
     {
-        player.ProjectileCount += 1;
-        player.ProjectileSize *= 0.9f;
+        player.ProjectileCount += 0.5f;
+        player.ProjectileSize *= 0.85f;
     }
 
     public override void OnUpgrade()

@@ -3,6 +3,7 @@ public class HuntingBow : PerkCard
     public override void OnSelect()
     {
         player.ProjectileSpeed *= 1.2f;
+        player.ProjectileDuration *= 1.2f;
     }
 
     public override void OnUpgrade()

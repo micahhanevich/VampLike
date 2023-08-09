@@ -111,10 +111,17 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Duration == 0)
+        if (Duration < 0)
+        {
+            transform.localScale *= 0.9f;
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if (Duration <= -14)
         {
             Destroy(gameObject);
         }
+
         Duration -= 1;
     }
 

@@ -63,12 +63,12 @@ public abstract partial class Entity : MonoBehaviour
 
     protected void UpdateHealth()
     {
-        HealthBar.localScale = new Vector2 { x = (float)Health / (float)MaxHealth, y = 1 };
+        if (HealthBar) { HealthBar.localScale = new Vector2 { x = (float)Health / (float)MaxHealth, y = 1 }; }
     }
 
     protected void UpdateStamina()
     {
-        if (MoveCooldownTimer > 0) { MoveCooldownTimer -= 1; }
+        if (MoveCooldownTimer > 0f) { MoveCooldownTimer -= 1f; }
 
         float movecd;
         try
@@ -163,11 +163,7 @@ public abstract partial class Entity : MonoBehaviour
         return projectile;
     }
 
-    public void TakeDamage(int damage)
-    {
-        Health -= damage;
-        if (Health <= 0) { Destroy(gameObject); }
-    }
+    public abstract void TakeDamage(int damage);
 
     protected abstract void OnPreMove();
 

@@ -18,22 +18,29 @@ public class CamMoveController : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < playerObject.transform.position.x - graceRange) 
-        { 
-            animator.SetBool("MoveRight", true);
-        }
-        else
+        try
         {
-            animator.SetBool("MoveRight", false);
+            if (transform.position.x < playerObject.transform.position.x - graceRange)
+            {
+                animator.SetBool("MoveRight", true);
+            }
+            else
+            {
+                animator.SetBool("MoveRight", false);
+            }
+
+            if (transform.position.x > playerObject.transform.position.x + graceRange)
+            {
+                animator.SetBool("MoveLeft", true);
+            }
+            else
+            {
+                animator.SetBool("MoveLeft", false);
+            }
         }
-        
-        if (transform.position.x > playerObject.transform.position.x + graceRange)
+        catch (MissingReferenceException)
         {
-            animator.SetBool("MoveLeft", true);
-        }
-        else
-        {
-            animator.SetBool("MoveLeft", false);
+            Debug.LogWarning("Player Missing");
         }
     }
 }

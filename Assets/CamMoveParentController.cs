@@ -19,22 +19,29 @@ public class CamMoveParentController : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y - yOffset < playerObject.transform.position.y - graceRange)
+        try
         {
-            animator.SetBool("MoveUp", true);
-        }
-        else
-        {
-            animator.SetBool("MoveUp", false);
-        }
+            if (transform.position.y - yOffset < playerObject.transform.position.y - graceRange)
+            {
+                animator.SetBool("MoveUp", true);
+            }
+            else
+            {
+                animator.SetBool("MoveUp", false);
+            }
 
-        if (transform.position.y - yOffset > playerObject.transform.position.y + graceRange)
-        {
-            animator.SetBool("MoveDown", true);
+            if (transform.position.y - yOffset > playerObject.transform.position.y + graceRange)
+            {
+                animator.SetBool("MoveDown", true);
+            }
+            else
+            {
+                animator.SetBool("MoveDown", false);
+            }
         }
-        else
+        catch (MissingReferenceException)
         {
-            animator.SetBool("MoveDown", false);
+            Debug.LogWarning("Player Missing");
         }
     }
 }

@@ -20,31 +20,45 @@ public class Enemy : Entity
         player = FindObjectOfType<Player>();
     }
 
+    public override void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0) { GetComponentInChildren<Animator>().SetBool("Death", true); }
+    }
+
     private bool AttemptMove()
     {
         bool success = false;
         if (MoveCooldownTimer == 0)
         {
-            Vector3 posdif = player.transform.position - transform.position;
-            posdif.x = Mathf.Clamp(posdif.x, -1, 1);
-            posdif.y = Mathf.Clamp(posdif.y, -1, 1);
-            int r = Random.Range(0, 2);
-
-            if (posdif.x != 0 && posdif.y != 0)
+            try
             {
-                switch (r)
+                Vector3 posdif = player.transform.position - transform.position;
+                posdif.x = Mathf.Clamp(posdif.x, -1, 1);
+                posdif.y = Mathf.Clamp(posdif.y, -1, 1);
+                int r = Random.Range(0, 2);
+
+
+                if (posdif.x != 0 && posdif.y != 0)
                 {
-                    case 0:
-                        Move(new Vector2 { x = posdif.x, y = 0 }, AttackMove);
-                        return true;
-                    default:
-                        Move(new Vector2 { x = 0, y = posdif.y }, AttackMove);
-                        return true;
+                    switch (r)
+                    {
+                        case 0:
+                            Move(new Vector2 { x = posdif.x, y = 0 }, AttackMove);
+                            return true;
+                        default:
+                            Move(new Vector2 { x = 0, y = posdif.y }, AttackMove);
+                            return true;
+                    }
+                }
+                else if (posdif.x != 0 ^ posdif.y != 0)
+                {
+                    return Move(new Vector2 { x = posdif.x, y = posdif.y }, AttackMove);
                 }
             }
-            else if (posdif.x != 0 ^ posdif.y != 0)
+            catch (MissingReferenceException)
             {
-                return Move(new Vector2 { x = posdif.x, y = posdif.y }, AttackMove);
+                Debug.LogWarning("Player cannot be found");
             }
         }
         return success;
@@ -101,7 +115,14 @@ public class Enemy : Entity
 
     private void OnDestroy()
     {
-        player.GetComponent<Player>().GainXP(RewardXP);
+        try
+        {
+            player.GetComponent<Player>().GainXP(RewardXP);
+        }
+        catch (MissingReferenceException)
+        {
+            Debug.LogWarning("Missing Player- cannot reward XP");
+        }
     }
 
 }

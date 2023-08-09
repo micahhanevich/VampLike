@@ -10,6 +10,11 @@ public class Player : Entity
 
     public Canvas HUD;
     public Canvas LevelupMenu;
+    public Canvas PauseMenu;
+    public Canvas QuitWarning;
+    public Canvas DeathScreen;
+
+    public Animator PlayerAnimator;
 
     [Header("Player Stats")]
     [Min(1)]
@@ -22,14 +27,19 @@ public class Player : Entity
     public int Level = 0;
 
     [Min(1)]
-    public int ProjectileCount = 1;
+    public float ProjectileCount = 1;
 
     void Start()
     {
+        PlayerAnimator = GetComponentInChildren<Animator>();
         PlayerEffectCanvas = GetComponent<Canvas>();
         rbody = GetComponent<Rigidbody>();
         srenderer = GetComponentInChildren<SpriteRenderer>();
         LevelupMenu.enabled = false;
+        PauseMenu.enabled = false;
+        QuitWarning.enabled = false;
+        DeathScreen.enabled = false;
+        ButtonControls.Pausable = true;
     }
 
     // Update is called once per frame
@@ -54,9 +64,14 @@ public class Player : Entity
             Move(new Vector2 { x = 0, y = -1 });
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ButtonControls.TogglePauseMenu();
         }
     }
     
@@ -67,41 +82,69 @@ public class Player : Entity
         if (XPBar) { UpdateXP(); }
     }
 
+    override public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            PlayerAnimator.SetBool("Dead", true);
+        }
+    }
+
     protected Projectile[] MultiAttack(Vector2 direction)
     {
         Projectile[] projectiles = new Projectile[5];
+        // PlayerAnimator.SetBool("MoveRight", true);
         switch (ProjectileCount)
         {
-            case 1:
-                return new Projectile[] { Attack() };
-
-            case 2:
-                projectiles[0] = Attack(CurrentDirection, 15f);
-                projectiles[1] = Attack(CurrentDirection, -15f);
-                return projectiles;
-            
-            case 3:
-                projectiles[0] = Attack(CurrentDirection, 30f);
-                projectiles[1] = Attack(CurrentDirection, 0f);
-                projectiles[2] = Attack(CurrentDirection, -30f);
+            case >=6.5f:
+                projectiles[0] = Attack(CurrentDirection, 90f);
+                projectiles[1] = Attack(CurrentDirection, 60f);
+                projectiles[2] = Attack(CurrentDirection, 30f);
+                projectiles[3] = Attack(CurrentDirection, 0f);
+                projectiles[4] = Attack(CurrentDirection, -30f);
+                projectiles[5] = Attack(CurrentDirection, -60f);
+                projectiles[6] = Attack(CurrentDirection, -90f);
                 return projectiles;
 
-            case 4:
-                projectiles[0] = Attack(CurrentDirection, 45f);
-                projectiles[1] = Attack(CurrentDirection, 15f);
-                projectiles[2] = Attack(CurrentDirection, -15f);
-                projectiles[3] = Attack(CurrentDirection, -45f);
+            case >=5.5f:
+                projectiles[0] = Attack(CurrentDirection, 75f);
+                projectiles[1] = Attack(CurrentDirection, 45f);
+                projectiles[2] = Attack(CurrentDirection, 15f);
+                projectiles[3] = Attack(CurrentDirection, -15f);
+                projectiles[4] = Attack(CurrentDirection, -45f);
+                projectiles[5] = Attack(CurrentDirection, -75f);
                 return projectiles;
 
-            case 5:
+            case >=4.5f:
                 projectiles[0] = Attack(CurrentDirection, 60f);
                 projectiles[1] = Attack(CurrentDirection, 30f);
                 projectiles[2] = Attack(CurrentDirection, 0f);
                 projectiles[3] = Attack(CurrentDirection, -30f);
                 projectiles[4] = Attack(CurrentDirection, -60f);
                 return projectiles;
+
+            case >=3.5f:
+                projectiles[0] = Attack(CurrentDirection, 45f);
+                projectiles[1] = Attack(CurrentDirection, 15f);
+                projectiles[2] = Attack(CurrentDirection, -15f);
+                projectiles[3] = Attack(CurrentDirection, -45f);
+                return projectiles;
+
+            case >=2.5f:
+                projectiles[0] = Attack(CurrentDirection, 30f);
+                projectiles[1] = Attack(CurrentDirection, 0f);
+                projectiles[2] = Attack(CurrentDirection, -30f);
+                return projectiles;
+
+            case >=1.5f:
+                projectiles[0] = Attack(CurrentDirection, 15f);
+                projectiles[1] = Attack(CurrentDirection, -15f);
+                return projectiles;
+
+            default:
+                return new Projectile[] { Attack() };
         }
-        return new Projectile[] { Attack() };
     }
 
     protected override void OnPreAttack()
@@ -118,7 +161,7 @@ public class Player : Entity
 
     protected override void OnPostAttack()
     {
-        
+
     }
 
     protected override void OnPreMove()
