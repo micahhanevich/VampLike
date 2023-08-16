@@ -73,6 +73,10 @@ public class ButtonControls : MonoBehaviour
         ResourceControls.Player.HUD.enabled = true;
         Time.timeScale = 1f;
         Pausable = true;
+        foreach (PerkCard perkCard in ResourceControls.Player.LevelupMenu.GetComponentsInChildren<PerkCard>())
+        {
+            Destroy(perkCard.gameObject);
+        }
     }
 
     public static void OpenDeathMenu()

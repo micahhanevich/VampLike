@@ -186,16 +186,23 @@ MonoBehaviour:
   srenderer: {fileID: 546781952}
   HealthBar: {fileID: 0}
   StaminaBar: {fileID: 1953705359739097371}
+  StatusBar: {fileID: 0}
   AttackProjectile: {fileID: 4220388738797586478, guid: 0e0ee39463343ee46b3952e44c7fea10, type: 3}
   ForwardProjSpawnScaleMax: 1
   ForwardProjSpawnScaleMin: 0.5
   MaxHealth: 2
+  HealthMultiplier: 0
   Health: 2
   MoveCooldown: 65
+  MoveCooldownMultiplier: 1
   ProjectileSpeed: 0
+  ProjectileSpeedMultiplier: 1
   ProjectilePierce: 0
+  ProjectilePierceMultiplier: 1
   ProjectileDuration: 1
-  ProjectileSize: 1
+  ProjectileDurationMultiplier: 1
+  ProjectileSize: 0.8
+  ProjectileSizeMulitplier: 1.25
   AttackMove: 1
   RewardXP: 1
 --- !u!1 &2725364514363617537
@@ -223,17 +230,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2725364514363617537}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.3420201, y: 0, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.08, y: 1.4, z: 1}
+  m_LocalScale: {x: 1.08, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8168586607950740422}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -40, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -0.04, y: -0.8}
+  m_AnchoredPosition: {x: -0.04000002, y: -0.6}
   m_SizeDelta: {x: 1, y: 0.14999998}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1037936843450861563
@@ -401,17 +408,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4710417110612152124}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.3420201, y: 0, z: 0, w: 0.9396927}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8168586607950740422}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -40, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.8}
+  m_AnchoredPosition: {x: 0, y: -0.6}
   m_SizeDelta: {x: 1, y: 0.14999998}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6698016924785826346

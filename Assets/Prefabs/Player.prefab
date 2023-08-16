@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 443400904}
   - component: {fileID: 443400905}
   - component: {fileID: 443400906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rendering
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1014382307}
   - component: {fileID: 1014382309}
   - component: {fileID: 1014382308}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: StaminaBarBackground
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 3297917060963197960}
   - component: {fileID: 4150303088684962010}
   - component: {fileID: 8537669739365570183}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBarBackground
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6001904464014980890}
   - component: {fileID: 6001904464014980891}
   - component: {fileID: 6001904464014980888}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: PlayerEffectCanvas
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 6001904464173527846}
   - component: {fileID: 948685849}
   - component: {fileID: 7419157911558598168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -413,19 +413,30 @@ MonoBehaviour:
   srenderer: {fileID: 443400905}
   HealthBar: {fileID: 6001904465003427146}
   StaminaBar: {fileID: 6001904465275353401}
+  StatusBar: {fileID: 0}
   AttackProjectile: {fileID: 7659387906400384293, guid: 4439f03f5d68b4040a4fc7dd0f281c7a, type: 3}
   ForwardProjSpawnScaleMax: 0.75
   ForwardProjSpawnScaleMin: 0.25
   MaxHealth: 6
+  HealthMultiplier: 1
   Health: 6
   MoveCooldown: 50
+  MoveCooldownMultiplier: 1
   ProjectileSpeed: 2
+  ProjectileSpeedMultiplier: 1
   ProjectilePierce: 0
+  ProjectilePierceMultiplier: 1
   ProjectileDuration: 0.35
-  ProjectileSize: 1
+  ProjectileDurationMultiplier: 1
+  ProjectileSize: 0.8
+  ProjectileSizeMulitplier: 1.25
   XPBar: {fileID: 0}
   HUD: {fileID: 0}
   LevelupMenu: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  QuitWarning: {fileID: 0}
+  DeathScreen: {fileID: 0}
+  PlayerAnimator: {fileID: 0}
   Level: 0
   ProjectileCount: 1
 --- !u!54 &948685849
@@ -468,7 +479,7 @@ GameObject:
   - component: {fileID: 6001904465003427146}
   - component: {fileID: 6001904465003427148}
   - component: {fileID: 6001904465003427149}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -544,7 +555,7 @@ GameObject:
   - component: {fileID: 6001904465275353401}
   - component: {fileID: 6001904465275353403}
   - component: {fileID: 6001904465275353400}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: StaminaBar
   m_TagString: UI
   m_Icon: {fileID: 0}
