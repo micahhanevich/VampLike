@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ooave3lv7jtb"]
+
+[ext_resource type="Texture2D" uid="uid://bk6lqgwiejc3t" path="res://assets/sprites/characters/player/archer/archer.png" id="1_io0hg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dmv5"]
+atlas = ExtResource("1_io0hg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u0vx"]
+atlas = ExtResource("1_io0hg")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2x5l4"]
+atlas = ExtResource("1_io0hg")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj13p"]
+atlas = ExtResource("1_io0hg")
+region = Rect2(144, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2dmv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u0vx")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_2x5l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj13p")
+}],
+"loop": true,
+"name": &"character_idle",
+"speed": 5.0
+}]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6pvmalmch02"]
+
+[ext_resource type="Script" path="res://scripts/main_menu/play_button.gd" id="1_byfh8"]
+[ext_resource type="Script" path="res://scripts/main_menu/quit_button.gd" id="2_0buqy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="BackgroundColor" type="ColorRect" parent="Control"]
+modulate = Color(0.164706, 0.301961, 0.4, 1)
+layout_mode = 0
+offset_right = 279.0
+offset_bottom = 270.0
+scale = Vector2(1.724, 1)
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 42.0
+grow_horizontal = 2
+pivot_offset = Vector2(100, 0)
+theme_type_variation = &"HeaderLarge"
+text = "Vamplike"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Version" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1230.0
+offset_top = 1032.0
+offset_right = 1914.0
+offset_bottom = 1074.0
+theme_type_variation = &"HeaderLarge"
+text = "v.0.1.0"
+horizontal_alignment = 2
+uppercase = true
+
+[node name="PlayButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+script = ExtResource("1_byfh8")
+
+[node name="SettingsButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 5.0
+offset_right = 50.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+disabled = true
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 45.0
+offset_right = 50.0
+offset_bottom = 79.9999
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+script = ExtResource("2_0buqy")
+
+[connection signal="pressed" from="Control/PlayButton" to="Control/PlayButton" method="_on_button_press"]
+[connection signal="pressed" from="Control/QuitButton" to="Control/QuitButton" method="_on_button_press"]
